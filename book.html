@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Test Drive | MeisterCo. - Your Trusted Perodua Dealer</title>
+    <style>
+        @font-face {
+    font-family: 'Mori';
+    src: url(fonts/PPMori-Regular.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'SF Pro';
+    src: url(fonts/SF-Pro-Display-Regular.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Mori Black';
+    src: url(fonts/PPMori-Black.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Mori Extralight';
+  src: url(fonts/PPMori-Extralight.otf) format('opentype');
+}
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #0a0a0a;
+            --primary-light: #f8f9fa;
+            --accent-blue: #007aff;
+            --accent-red: #ff3b30;
+            --accent-gold: #d4af37;
+            --accent-green: #34c759;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --gradient-main: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-hero: linear-gradient(45deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--primary-dark);
+            color: var(--primary-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ffffff, #007aff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 50vh;
+            background: var(--gradient-hero);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff08" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 700px;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-family: 'Mori Black', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffffff, #007aff, #ffffff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        h1 {
+            font-family: 'Mori Black', sans-serif;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-family: 'Mori Extralight', sans-serif;
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Form Container */
+        .form-container {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 122, 255, 0.05) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .form-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+            text-align: center;
+        }
+
+        .form-subtitle {
+            opacity: 0.8;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-light);
+        }
+
+        .required {
+            color: var(--accent-red);
+            margin-left: 0.3rem;
+        }
+
+        .form-control {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            color: var(--primary-light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-control.error {
+            border-color: var(--accent-red);
+            background: rgba(255, 59, 48, 0.1);
+        }
+
+        select.form-control {
+            cursor: pointer;
+        }
+
+        select.form-control option {
+            background: var(--primary-dark);
+            color: var(--primary-light);
+            padding: 0.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            margin-top: 0.2rem;
+            transform: scale(1.2);
+            accent-color: var(--accent-blue);
+        }
+
+        .checkbox-container label {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        .pdpa-link {
+            color: var(--accent-blue);
+            text-decoration: underline;
+        }
+
+        .pdpa-link:hover {
+            color: #5856d6;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, var(--accent-blue), #5856d6);
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 122, 255, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-btn:hover:not(:disabled)::before {
+            left: 100%;
+        }
+
+        .error-message {
+            color: var(--accent-red);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .success-message {
+            background: linear-gradient(45deg, var(--accent-green), #30d158);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: none;
+            align-items: center;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .success-message.show {
+            display: flex;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .loading {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .submit-btn.loading .loading {
+            display: inline-block;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: rgba(0, 122, 255, 0.1);
+            border: 1px solid var(--accent-blue);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-box h4 {
+            color: var(--accent-blue);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .info-box ul {
+            padding-left: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .info-box li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* Configuration Summary */
+        .config-summary {
+            background: rgba(0, 122, 255, 0.05);
+            border: 1px solid rgba(0, 122, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-bottom: 2rem;
+            display: none;
+        }
+
+        .config-summary.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .config-summary h4 {
+            color: var(--accent-blue);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .config-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.8rem;
+            text-align: center;
+        }
+
+        .config-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .config-item strong {
+            color: var(--accent-blue);
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-container {
+                padding: 2rem;
+            }
+
+            .main-content {
+                padding: 2rem 1rem;
+            }
+
+            .config-details {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">MeisterCo.</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#models">Models</a></li>
+                    <li><a href="index.html#news">News</a></li>
+                    <li><a href="index.html#location">Location</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contactus.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content fade-in">
+            <h1 class="hero-title">BOOK YOUR TEST DRIVE</h1>
+            <p class="hero-subtitle">Experience your perfect Perodua vehicle today</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="form-container fade-in">
+            <div class="form-content">
+                <div class="success-message" id="successMessage">
+                    <span>✅</span>
+                    <div>
+                        <strong>Booking Confirmed!</strong><br>
+                        Thank you for booking your test drive. We will contact you within 24 hours to confirm your appointment.
+                    </div>
+                </div>
+
+                <!-- Configuration Summary (hidden by default) -->
+                <div class="config-summary" id="configSummary">
+                    <h4>Your Selected Configuration</h4>
+                    <div class="config-details" id="configDetails">
+                        <!-- Details will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <h2 class="form-title">Book Your Test Drive</h2>
+                <p class="form-subtitle">Fill in your details below and we'll arrange your perfect test drive experience</p>
+
+                <div class="info-box">
+                    <h4>What to expect:</h4>
+                    <ul>
+                        <li>Bring your valid driving license (NRIC/Passport)</li>
+                        <li>Test drive duration: 15-20 minutes</li>
+                        <li>Our consultant will accompany you</li>
+                        <li>No purchase obligation</li>
+                        <li>Free vehicle inspection and consultation</li>
+                    </ul>
+                </div>
+
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name (as per IC/Passport)<span class="required">*</span></label>
+                        <input type="text" id="fullName" name="fullName" class="form-control" placeholder="Enter your full name as per identification document" required>
+                        <div class="error-message" id="fullNameError">Please enter your full name</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="idNumber">NRIC / Passport / No. Tentera / No. Polis<span class="required">*</span></label>
+                        <input type="text" id="idNumber" name="idNumber" class="form-control" placeholder="e.g., 123456-78-9012 or A12345678" required>
+                        <div class="error-message" id="idNumberError">Please enter a valid identification number</div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number<span class="required">*</span></label>
+                            <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="+60 12-345 6789" required>
+                            <div class="error-message" id="phoneNumberError">Please enter a valid phone number</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address<span class="required">*</span></label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="your.email@example.com" required>
+                            <div class="error-message" id="emailError">Please enter a valid email address</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="carModel">Car Model to Test Drive<span class="required">*</span></label>
+                        <select id="carModel" name="carModel" class="form-control" required>
+                            <option value="">Select a car model</option>
+                            <option value="alza">PERODUA ALZA - From RM 68,000</option>
+                            <option value="ativa">PERODUA ATIVA - From RM 66,000</option>
+                            <option value="myvi">PERODUA MYVI - From RM 46,500</option>
+                            <option value="axia">PERODUA AXIA - From RM 24,090</option>
+                            <option value="bezza">PERODUA BEZZA - From RM 34,580</option>
+                            <option value="aruz">PERODUA ARUZ - From RM 68,526</option>
+                        </select>
+                        <div class="error-message" id="carModelError">Please select a car model</div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="preferredDate">Preferred Date<span class="required">*</span></label>
+                            <input type="date" id="preferredDate" name="preferredDate" class="form-control" required>
+                            <div class="error-message" id="preferredDateError">Please select a preferred date</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="preferredTime">Preferred Time<span class="required">*</span></label>
+                            <select id="preferredTime" name="preferredTime" class="form-control" required>
+                                <option value="">Select time slot</option>
+                                <option value="09:00">9:00 AM - 10:00 AM</option>
+                                <option value="10:00">10:00 AM - 11:00 AM</option>
+                                <option value="11:00">11:00 AM - 12:00 PM</option>
+                                <option value="14:00">2:00 PM - 3:00 PM</option>
+                                <option value="15:00">3:00 PM - 4:00 PM</option>
+                                <option value="16:00">4:00 PM - 5:00 PM</option>
+                                <option value="17:00">5:00 PM - 6:00 PM</option>
+                            </select>
+                            <div class="error-message" id="preferredTimeError">Please select a preferred time</div>
+                        </div>
+                    </div>
+
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="pdpaConsent" name="pdpaConsent" required>
+                        <label for="pdpaConsent">
+                            I hereby acknowledge and confirm my consent for the processing of my personal data in accordance with the 
+                            <a href="#" class="pdpa-link" onclick="showPDPA()">Personal Data Protection Act (PDPA) Notice</a>. 
+                            I understand that my personal information will be used solely for the purpose of arranging and conducting 
+                            the test drive appointment and related automotive services.
+                            <span class="required">*</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="loading"></span>
+                        <span class="btn-text">Book Test Drive</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('preferredDate').min = today;
+
+            // Check for URL parameters and pre-fill form
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            if (urlParams.get('model')) {
+                const model = urlParams.get('model');
+                const variant = urlParams.get('variant') || '';
+                const color = urlParams.get('color') || '';
+                const price = urlParams.get('price') || '';
+                
+                // Model mapping for form options
+                const modelMap = {
+                    'alza': 'alza',
+                    'ativa': 'ativa', 
+                    'myvi': 'myvi',
+                    'axia': 'axia',
+                    'bezza': 'bezza',
+                    'aruz': 'aruz'
+                };
+                
+                // Pre-select the car model
+                const carModelSelect = document.getElementById('carModel');
+                if (carModelSelect && modelMap[model]) {
+                    carModelSelect.value = modelMap[model];
+                    
+                    // Only update the display text if we have meaningful variant/price info
+                    // Check for non-empty strings and not "RM 0"
+                    if ((variant && variant.trim() !== '') || (price && price.trim() !== '' && price !== 'RM 0')) {
+                        const option = carModelSelect.querySelector(`option[value="${modelMap[model]}"]`);
+                        if (option) {
+                            const modelName = (variant && variant.trim() !== '') ? variant : option.textContent.split(' - ')[0];
+                            const displayPrice = (price && price.trim() !== '' && price !== 'RM 0') ? price : option.textContent.split(' - ')[1];
+                            option.textContent = `${modelName} - ${displayPrice}`;
+                        }
+                    }
+                    // If no meaningful variant/price, the original option text is kept
+                }
+                
+                // Update hero subtitle with configuration info
+                const heroSubtitle = document.querySelector('.hero-subtitle');
+                if (heroSubtitle && (variant || color)) {
+                    let configText = 'Experience your perfect Perodua vehicle today';
+                    if (variant && color) {
+                        configText = `Experience the ${variant} in ${color} today`;
+                    } else if (variant) {
+                        configText = `Experience the ${variant} today`;
+                    }
+                    heroSubtitle.textContent = configText;
+                }
+                
+                // Show configuration summary if we have detailed info
+                if ((variant && variant.trim() !== '') || (color && color.trim() !== '') || (price && price.trim() !== '' && price !== 'RM 0')) {
+                    const configSummary = document.getElementById('configSummary');
+                    const configDetails = document.getElementById('configDetails');
+                    
+                    let detailsHTML = '';
+                    
+                    if (variant && variant.trim() !== '') {
+                        detailsHTML += `<div class="config-item"><strong>Model</strong>${variant}</div>`;
+                    }
+                    
+                    if (color && color.trim() !== '') {
+                        detailsHTML += `<div class="config-item"><strong>Color</strong>${color}</div>`;
+                    }
+                    
+                    if (price && price.trim() !== '' && price !== 'RM 0') {
+                        detailsHTML += `<div class="config-item"><strong>Price</strong>${price}</div>`;
+                    }
+                    
+                    if (detailsHTML) {
+                        configDetails.innerHTML = detailsHTML;
+                        configSummary.classList.add('show');
+                    }
+                }
+            }
+
+            // Form submission
+            const form = document.getElementById('bookingForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const successMessage = document.getElementById('successMessage');
+
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    if (validateForm()) {
+                        submitForm();
+                    }
+                });
+            }
+
+            // Phone number formatting
+            const phoneInput = document.getElementById('phoneNumber');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    
+                    if (value.startsWith('60')) {
+                        value = '+' + value;
+                    } else if (value.startsWith('0')) {
+                        value = '+60' + value.substring(1);
+                    } else if (!value.startsWith('+60') && value.length > 0) {
+                        value = '+60' + value;
+                    }
+                    
+                    // Format: +60 12-345 6789
+                    value = value.replace(/(\+60)(\d{2})(\d{3})(\d{4})/, '$1 $2-$3 $4');
+                    e.target.value = value;
+                });
+            }
+
+            // Real-time validation
+            const inputs = document.querySelectorAll('.form-control');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+
+                input.addEventListener('input', function() {
+                    if (this.classList.contains('error')) {
+                        validateField(this);
+                    }
+                });
+            });
+
+            // PDPA checkbox validation
+            const pdpaCheckbox = document.getElementById('pdpaConsent');
+            if (pdpaCheckbox) {
+                pdpaCheckbox.addEventListener('change', function() {
+                    updateSubmitButton();
+                });
+            }
+
+            function validateField(field) {
+                const value = field.value.trim();
+                const fieldName = field.name;
+                const errorElement = document.getElementById(fieldName + 'Error');
+                let isValid = true;
+                let errorMessage = '';
+
+                // Clear previous error state
+                field.classList.remove('error');
+                if (errorElement) {
+                    errorElement.style.display = 'none';
+                }
+
+                if (field.hasAttribute('required') && !value) {
+                    isValid = false;
+                    errorMessage = 'This field is required';
+                } else {
+                    switch (fieldName) {
+                        case 'email':
+                            if (value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                                isValid = false;
+                                errorMessage = 'Please enter a valid email address';
+                            }
+                            break;
+                        case 'phoneNumber':
+                            if (value && !/^\+60\s\d{2}-\d{3}\s\d{4}$/.test(value)) {
+                                isValid = false;
+                                errorMessage = 'Please enter a valid Malaysian phone number';
+                            }
+                            break;
+                        case 'idNumber':
+                            if (value && !/^(\d{6}-\d{2}-\d{4}|[A-Z]\d{8}|[A-Z]{1,2}\d{6,8})$/i.test(value.replace(/\s/g, ''))) {
+                                isValid = false;
+                                errorMessage = 'Please enter a valid identification number';
+                            }
+                            break;
+                        case 'fullName':
+                            if (value && value.length < 2) {
+                                isValid = false;
+                                errorMessage = 'Name must be at least 2 characters long';
+                            }
+                            break;
+                    }
+                }
+
+                if (!isValid) {
+                    field.classList.add('error');
+                    if (errorElement) {
+                        errorElement.textContent = errorMessage;
+                        errorElement.style.display = 'block';
+                    }
+                }
+
+                return isValid;
+            }
+
+            function validateForm() {
+                let isFormValid = true;
+                
+                // Validate all form controls
+                inputs.forEach(input => {
+                    if (!validateField(input)) {
+                        isFormValid = false;
+                    }
+                });
+
+                // Check PDPA consent
+                if (!document.getElementById('pdpaConsent').checked) {
+                    isFormValid = false;
+                    alert('Please agree to the PDPA consent to proceed.');
+                }
+
+                return isFormValid;
+            }
+
+            function updateSubmitButton() {
+                const isFormFilled = Array.from(document.querySelectorAll('.form-control[required]')).every(input => input.value.trim());
+                const isPDPAChecked = document.getElementById('pdpaConsent').checked;
+                
+                submitBtn.disabled = !(isFormFilled && isPDPAChecked);
+            }
+
+            function submitForm() {
+                const btnText = document.querySelector('.btn-text');
+                
+                // Show loading state
+                submitBtn.classList.add('loading');
+                btnText.textContent = 'Processing...';
+                submitBtn.disabled = true;
+
+                // Simulate form submission
+                setTimeout(() => {
+                    // Hide loading state
+                    submitBtn.classList.remove('loading');
+                    btnText.textContent = 'Book Test Drive';
+                    
+                    // Show success message
+                    successMessage.classList.add('show');
+                    
+                    // Reset form
+                    form.reset();
+                    submitBtn.disabled = false;
+                    
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                    // Hide success message after 8 seconds
+                    setTimeout(() => {
+                        successMessage.classList.remove('show');
+                    }, 8000);
+                }, 2000);
+            }
+
+            // Update submit button state on form changes
+            form.addEventListener('input', updateSubmitButton);
+            form.addEventListener('change', updateSubmitButton);
+
+            // Initialize submit button state
+            updateSubmitButton();
+        });
+
+        // PDPA Notice popup
+        function showPDPA() {
+            alert(`PERSONAL DATA PROTECTION ACT (PDPA) NOTICE
+
+MeisterCo. is committed to protecting your personal data. This notice explains how we collect, use, and protect your information:
+
+COLLECTION: We collect personal data you provide in this form for test drive arrangement and automotive services.
+
+USAGE: Your data will be used to:
+• Arrange and conduct test drive appointments
+• Contact you regarding automotive services
+• Provide customer support
+• Comply with legal requirements
+
+PROTECTION: We implement appropriate security measures to protect your personal data.
+
+RETENTION: We retain your data only as long as necessary for the stated purposes.
+
+RIGHTS: You have the right to access, correct, or request deletion of your personal data.
+
+For questions about our data practices, contact us at privacy@meisterco.com.my`);
+        }
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
