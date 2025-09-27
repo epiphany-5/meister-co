@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERODUA BEZZA | Premium Sedan Excellence</title>
+    <style>
+        @font-face {
+    font-family: 'Mori';
+    src: url(assets/fonts/PPMori-Regular.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'SF Pro';
+    src: url(assets/fonts/SF-Pro-Display-Regular.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Mori Black';
+    src: url(assets/fonts/PPMori-Black.otf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Mori Extralight';
+  src: url(assets/fonts/PPMori-Extralight.otf) format('opentype');
+}
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #0a0a0a;
+            --primary-light: #f8f9fa;
+            --accent-blue: #007aff;
+            --accent-red: #ff3b30;
+            --accent-gold: #d4af37;
+            --accent-purple: #af52de;
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --gradient-main: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-hero: linear-gradient(45deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Mori', Roboto, sans-serif;
+            background: var(--primary-dark);
+            color: var(--primary-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo updates */
+.logo {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.logo-text {
+    font-family: 'Mori Black', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, #ffffff, #20b2aa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+.logo-tagline {
+    font-size: 0.7rem;
+    opacity: 0.6;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 2px;
+}
+
+/* Desktop Navigation Updates */
+.desktop-nav .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-teal);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--accent-teal);
+    transform: translateY(-1px);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.hamburger-line {
+    width: 24px;
+    height: 2px;
+    background: var(--primary-light);
+    margin: 3px 0;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-nav-links {
+    list-style: none;
+    padding: 2rem;
+}
+
+.mobile-nav-link {
+    display: block;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    padding: 1rem 0;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+    color: var(--accent-teal);
+    transform: translateX(10px);
+}
+
+/* Responsive Behavior */
+@media (max-width: 1024px) {
+    .desktop-nav {
+        display: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .logo-tagline {
+        display: none; /* Hide tagline on mobile for space */
+    }
+}
+
+/* Remove the old back-button styles since it's now integrated into nav */
+.back-button {
+    display: none;
+}
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: var(--gradient-hero);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .hero-text {
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-family: 'Mori Black', sans-serif;
+            font-size: clamp(3rem, 6vw, 6rem);
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffffff, #af52de, #d4af37);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-family: 'Mori Extralight', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, var(--accent-purple), #bf5af2);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(175, 82, 222, 0.3);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            border: 2px solid var(--accent-purple);
+            color: var(--accent-purple);
+        }
+
+        .cta-secondary:hover {
+            background: var(--accent-purple);
+            color: white;
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            background: 
+                url('https://www.perodua.com.my/assets/car/bezza/webp/bezza_info_kv_m_1_5x.webp?v=1755767227'),
+                var(--glass);
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+        }
+        h2 {
+            font-family: 'Mori Black', sans-serif;
+        }
+
+        /* Video Section */
+        .video-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+
+        .video-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #ffffff, #af52de);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background: var(--glass);
+            border-radius: 24px;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .video-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .play-button {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, var(--accent-purple), #bf5af2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(175, 82, 222, 0.5);
+        }
+
+        .play-button::before {
+            content: '▶';
+            font-size: 2rem;
+            color: white;
+            margin-left: 5px;
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .video-description {
+            opacity: 0.8;
+            max-width: 600px;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 8rem 2rem;
+            background: var(--primary-dark);
+        }
+
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--accent-purple), #bf5af2);
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+
+        /* Specifications Section */
+        .specs-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+        }
+
+        .specs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .specs-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-weight: 600;
+        }
+
+        .tab-button:hover,
+        .tab-button.active {
+            background: var(--accent-purple);
+            border-color: var(--accent-purple);
+            transform: translateY(-2px);
+        }
+
+        .specs-content {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            padding: 3rem;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .spec-label {
+            font-weight: 600;
+            color: var(--accent-purple);
+        }
+
+        .spec-value {
+            opacity: 0.9;
+        }
+
+        /* Customization Section */
+        .customization-section {
+            padding: 8rem 2rem;
+            background: var(--primary-dark);
+        }
+
+        .customization-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .customization-panel {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            padding: 3rem;
+            position: sticky;
+            top: 100px;
+        }
+
+        .custom-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #ffffff, #af52de);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .custom-group {
+            margin-bottom: 3rem;
+            opacity: 0.3;
+            pointer-events: none;
+            transition: all 0.5s ease;
+            transform: translateY(20px);
+        }
+
+        .custom-group.active {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateY(0);
+        }
+
+        .custom-group.completed {
+            opacity: 0.8;
+            pointer-events: all;
+            transform: translateY(0);
+        }
+
+        .custom-group.next-preview {
+            opacity: 0.5;
+            pointer-events: none;
+            transform: translateY(10px);
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+
+        .step-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .step-dot.active {
+            background: var(--accent-purple);
+            transform: scale(1.2);
+        }
+
+        .step-dot.completed {
+            background: var(--accent-blue);
+        }
+
+        .final-buttons {
+            opacity: 0.3;
+            pointer-events: none;
+            transition: all 0.5s ease;
+            transform: translateY(20px);
+        }
+
+        .final-buttons.active {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateY(0);
+        }
+
+        .custom-label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .custom-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .custom-option {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .custom-option:hover,
+        .custom-option.active {
+            background: var(--accent-purple);
+            border-color: var(--accent-purple);
+            transform: translateY(-2px);
+        }
+
+        .color-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .color-option {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            position: relative;
+        }
+
+        .color-option:hover,
+        .color-option.active {
+            transform: scale(1.1);
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 20px rgba(175, 82, 222, 0.5);
+        }
+
+        .color-red { background: var(--accent-red); }
+        .color-blue { background: var(--accent-blue); }
+        .color-silver { background: linear-gradient(45deg, #c0c0c0, #e0e0e0); }
+        .color-black { background: #000000; }
+        .color-white { background: #ffffff; }
+        .color-purple { background: var(--accent-purple); }
+
+        .price-summary {
+            background: rgba(175, 82, 222, 0.1);
+            border: 1px solid var(--accent-purple);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .price-label {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-amount {
+            font-family: 'Mori Black', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent-purple);
+        }
+
+        .car-preview {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            height: fit-content;
+        }
+
+        .preview-car {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, #2a2a2a, #3a3a3a);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview-car::before {
+            content: 'BEZZA PREVIEW';
+            color: rgba(175, 82, 222, 0.5);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .config-summary {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .config-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .config-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .control-button {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+
+        .control-button:hover {
+            background: var(--accent-purple);
+            border-color: var(--accent-purple);
+            transform: translateY(-1px);
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 8rem 2rem;
+            background: var(--gradient-hero);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffffff, #af52de);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 3rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content,
+            .customization-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .specs-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .video-wrapper {
+                height: 300px;
+            }
+
+            .customization-panel {
+                position: static;
+            }
+        }
+
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header" role="banner">
+    <div class="nav-container">
+        <div class="logo" aria-label="MeisterCo Homepage">
+            <span class="logo-text">MeisterCo.</span>
+            <span class="logo-tagline">Driving the Future</span>
+        </div>
+        
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav" role="navigation" aria-label="Main navigation">
+            <ul class="nav-links">
+                <li><a href="#overview" class="nav-link active" data-section="overview">Overview</a></li>
+                <li><a href="#features" class="nav-link" data-section="features">Features</a></li>
+                <li><a href="#specifications" class="nav-link" data-section="specifications">Specs</a></li>
+                <li><a href="#customize" class="nav-link" data-section="customize">Customize</a></li>
+                <li><a href="#gallery" class="nav-link" data-section="gallery">Gallery</a></li>
+                <li><a href="/index.html#models" class="nav-link">← Back to Models</a></li>
+            </ul>
+        </nav>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu" aria-expanded="false">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile navigation">
+        <ul class="mobile-nav-links">
+            <li><a href="#overview" class="mobile-nav-link" data-section="overview">Overview</a></li>
+            <li><a href="#features" class="mobile-nav-link" data-section="features">Features</a></li>
+            <li><a href="#specifications" class="mobile-nav-link" data-section="specifications">Specs</a></li>
+            <li><a href="#customize" class="mobile-nav-link" data-section="customize">Customize</a></li>
+            <li><a href="#gallery" class="mobile-nav-link" data-section="gallery">Gallery</a></li>
+            <li><a href="/index.html#models" class="mobile-nav-link">← Back to Models</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="overview">
+        <div class="hero-content fade-in">
+            <div class="hero-text">
+                <h1 class="hero-title">PERODUA<br>BEZZA</h1>
+                <p class="hero-subtitle">Premium Sedan Excellence</p>
+                <p class="hero-description">
+                    Experience sophisticated sedan engineering with the Perodua Bezza. 
+                    Combining premium comfort, advanced technology, and elegant design, 
+                    the Bezza delivers an elevated driving experience with spacious luxury and refined performance.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#customize" class="cta-button">CONFIGURE YOURS</a>
+                    <a href="#video" class="cta-button cta-secondary">WATCH VIDEO</a>
+                </div>
+            </div>
+            <div class="hero-visual"></div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section" id="video">
+        <div class="video-container">
+            <h2 class="section-title fade-in">BEZZA ELEGANCE</h2>
+            <div class="video-wrapper fade-in">
+                <div class="video-placeholder">
+                    <button class="play-button" onclick="playVideo()"></button>
+                    <div>
+                        <h3 class="video-title">Sedan Sophistication</h3>
+                        <p class="video-description">
+                            Discover the premium features, spacious interior, and refined performance 
+                            that make the Bezza the perfect choice for discerning drivers.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <p class="fade-in" style="opacity: 0.7;">Experience the Bezza's premium sedan comfort and style</p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="features-container">
+            <h2 class="section-title fade-in">PREMIUM FEATURES</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🏆</div>
+                    <h3 class="feature-title">Sedan Elegance</h3>
+                    <p class="feature-description">
+                        Classic sedan proportions with contemporary styling that exudes 
+                        sophistication and premium appeal on every journey.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Powerful Performance</h3>
+                    <p class="feature-description">
+                        1.3L Dual VVT-i engine delivering smooth, responsive power 
+                        with excellent fuel efficiency for long-distance comfort.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🧳</div>
+                    <h3 class="feature-title">Spacious Trunk</h3>
+                    <p class="feature-description">
+                        Generous 508-liter trunk capacity perfect for family trips, 
+                        business travel, and all your cargo needs.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="feature-title">Advanced Safety</h3>
+                    <p class="feature-description">
+                        Comprehensive safety suite with multiple airbags, ABS, VSC, 
+                        and a reinforced body structure for maximum protection.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">❄️</div>
+                    <h3 class="feature-title">Climate Comfort</h3>
+                    <p class="feature-description">
+                        Advanced air conditioning system with efficient cooling 
+                        and heating for optimal cabin comfort in all weather.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Smart Technology</h3>
+                    <p class="feature-description">
+                        Modern infotainment system with smartphone connectivity, 
+                        Bluetooth, and premium audio for the connected lifestyle.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specifications Section -->
+    <section class="specs-section" id="specifications">
+        <div class="specs-container">
+            <h2 class="section-title fade-in">SPECIFICATIONS</h2>
+            <div class="specs-tabs fade-in">
+                <button class="tab-button active" onclick="showSpecs('engine')">Engine</button>
+                <button class="tab-button" onclick="showSpecs('dimensions')">Dimensions</button>
+                <button class="tab-button" onclick="showSpecs('safety')">Safety</button>
+                <button class="tab-button" onclick="showSpecs('comfort')">Comfort</button>
+            </div>
+            
+            <div class="specs-content fade-in" id="specsContent">
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Engine Type</span>
+                        <span class="spec-value">1.3L Dual VVT-i</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Max Power</span>
+                        <span class="spec-value">95 PS @ 6,000 rpm</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Max Torque</span>
+                        <span class="spec-value">121 Nm @ 4,000 rpm</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Transmission</span>
+                        <span class="spec-value">4-Speed AT / 5-Speed MT</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Fuel Consumption</span>
+                        <span class="spec-value">4.7L/100km</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Fuel Tank Capacity</span>
+                        <span class="spec-value">40 Litres</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customization Section -->
+    <section class="customization-section" id="customize">
+        <div class="customization-container">
+            <div class="customization-panel fade-in">
+                <h2 class="custom-title">BUILD YOUR BEZZA</h2>
+                
+                <!-- Step Indicator -->
+                <div class="step-indicator">
+                    <div class="step-dot active" onclick="goToStep(0)"></div>
+                    <div class="step-dot" onclick="goToStep(1)"></div>
+                    <div class="step-dot" onclick="goToStep(2)"></div>
+                    <div class="step-dot" onclick="goToStep(3)"></div>
+                </div>
+
+                <!-- Step 1: Variant Selection -->
+                <div class="custom-group active" id="step-0">
+                    <label class="custom-label">Step 1: Select Variant</label>
+                    <div class="custom-options">
+                        <div class="custom-option" onclick="selectVariant(this, 'G', 42300, 0)">
+                            <div>Bezza G</div>
+                            <small>RM 42,300</small>
+                        </div>
+                        <div class="custom-option" onclick="selectVariant(this, 'X', 47600, 0)">
+                            <div>Bezza X</div>
+                            <small>RM 47,600</small>
+                        </div>
+                        <div class="custom-option" onclick="selectVariant(this, 'AV', 52200, 0)">
+                            <div>Bezza AV</div>
+                            <small>RM 52,200</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Color Selection -->
+                <div class="custom-group next-preview" id="step-1">
+                    <label class="custom-label">Step 2: Choose Color</label>
+                    <div class="color-options">
+                        <div class="color-option color-white" onclick="selectColor(this, 'Ivory White', 1)" data-color="white"></div>
+                        <div class="color-option color-silver" onclick="selectColor(this, 'Glittering Silver', 1)" data-color="silver"></div>
+                        <div class="color-option color-black" onclick="selectColor(this, 'Granite Grey', 1)" data-color="black"></div>
+                        <div class="color-option color-red" onclick="selectColor(this, 'Cranberry Red', 1)" data-color="red"></div>
+                        <div class="color-option color-blue" onclick="selectColor(this, 'Moonlight Blue', 1)" data-color="blue"></div>
+                        <div class="color-option color-purple" onclick="selectColor(this, 'Royal Purple', 1)" data-color="purple"></div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Interior Package -->
+                <div class="custom-group" id="step-2">
+                    <label class="custom-label">Step 3: Interior Package</label>
+                    <div class="custom-options">
+                        <div class="custom-option" onclick="selectInterior(this, 'Standard', 0, 2)">
+                            <div>Standard</div>
+                            <small>Included</small>
+                        </div>
+                        <div class="custom-option" onclick="selectInterior(this, 'Premium', 2800, 2)">
+                            <div>Premium</div>
+                            <small>+RM 2,800</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Accessories -->
+                <div class="custom-group" id="step-3">
+                    <label class="custom-label">Step 4: Accessories (Optional)</label>
+                    <div class="custom-options">
+                        <div class="custom-option" onclick="toggleAccessory(this, 'Trunk Organizer', 350, 3)">
+                            <div>Trunk Organizer</div>
+                            <small>+RM 350</small>
+                        </div>
+                        <div class="custom-option" onclick="toggleAccessory(this, 'Premium Mats', 450, 3)">
+                            <div>Premium Mats</div>
+                            <small>+RM 450</small>
+                        </div>
+                        <div class="custom-option" onclick="toggleAccessory(this, 'Window Tint', 500, 3)">
+                            <div>Window Tint</div>
+                            <small>+RM 500</small>
+                        </div>
+                        <div class="custom-option" onclick="toggleAccessory(this, 'Leather Seats', 1800, 3)">
+                            <div>Leather Seats</div>
+                            <small>+RM 1,800</small>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 1rem;">
+                        <button class="control-button" onclick="completeAccessoriesStep()" style="background: var(--accent-purple); border-color: var(--accent-purple);">
+                            Continue to Summary
+                        </button>
+                    </div>
+                </div>
+
+                <div class="config-summary">
+                    <h4 style="margin-bottom: 1rem; color: var(--accent-purple);">Configuration Summary</h4>
+                    <div class="config-item">
+                        <span>Variant:</span>
+                        <span id="selectedVariant">Not Selected</span>
+                    </div>
+                    <div class="config-item">
+                        <span>Color:</span>
+                        <span id="selectedColor">Not Selected</span>
+                    </div>
+                    <div class="config-item">
+                        <span>Interior:</span>
+                        <span id="selectedInterior">Not Selected</span>
+                    </div>
+                    <div class="config-item">
+                        <span>Accessories:</span>
+                        <span id="selectedAccessories">None</span>
+                    </div>
+                </div>
+
+                <div class="price-summary">
+                    <div class="price-label">Total Price</div>
+                    <div class="price-amount" id="totalPrice">RM 0</div>
+                </div>
+
+                <div class="final-buttons" id="finalButtons">
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                        <button class="cta-button" style="flex: 1;" onclick="requestQuote()">REQUEST QUOTE</button>
+                        <button class="cta-button cta-secondary" style="flex: 1;" onclick="bookTestDrive()">BOOK TEST DRIVE</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="car-preview fade-in">
+                <div class="preview-car" id="carPreview"></div>
+                <p style="text-align: center; opacity: 0.8; margin-bottom: 2rem;">
+                    360° view of your customized Bezza
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="cta-content fade-in">
+            <h2 class="cta-title">READY FOR LUXURY?</h2>
+            <p class="cta-subtitle">
+                Experience premium sedan comfort with the Perodua Bezza. 
+                Book your test drive today and discover why this sophisticated sedan sets the standard for elegance and performance.
+            </p>
+            <div class="cta-buttons">
+                <button class="cta-button" onclick="bookDefaultTestDrive()">BOOK TEST DRIVE</button>
+                <button class="cta-button cta-secondary" onclick="downloadBrochure()">DOWNLOAD BROCHURE</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Video functionality
+        function playVideo() {
+            const videoWrapper = document.querySelector('.video-wrapper');
+            videoWrapper.innerHTML = `
+                <iframe 
+                    width="100%" 
+                    height="600" 
+                    src="https://www.youtube.com/embed/EauSEIQSQGY?autoplay=1&rel=0" 
+                    title="Perodua Bezza Product Showcase" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen
+                    style="border-radius: 24px;">
+                </iframe>
+            `;
+        }
+
+        // Specifications tabs
+        function showSpecs(category) {
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const specs = {
+                engine: `
+                    <div class="spec-item"><span class="spec-label">Engine Type</span><span class="spec-value">1.3L Dual VVT-i</span></div>
+                    <div class="spec-item"><span class="spec-label">Max Power</span><span class="spec-value">95 PS @ 6,000 rpm</span></div>
+                    <div class="spec-item"><span class="spec-label">Max Torque</span><span class="spec-value">121 Nm @ 4,000 rpm</span></div>
+                    <div class="spec-item"><span class="spec-label">Transmission</span><span class="spec-value">4-Speed AT / 5-Speed MT</span></div>
+                    <div class="spec-item"><span class="spec-label">Fuel Consumption</span><span class="spec-value">4.7L/100km</span></div>
+                    <div class="spec-item"><span class="spec-label">Fuel Tank Capacity</span><span class="spec-value">40 Litres</span></div>
+                `,
+                dimensions: `
+                    <div class="spec-item"><span class="spec-label">Overall Length</span><span class="spec-value">4,315 mm</span></div>
+                    <div class="spec-item"><span class="spec-label">Overall Width</span><span class="spec-value">1,670 mm</span></div>
+                    <div class="spec-item"><span class="spec-label">Overall Height</span><span class="spec-value">1,510 mm</span></div>
+                    <div class="spec-item"><span class="spec-label">Wheelbase</span><span class="spec-value">2,455 mm</span></div>
+                    <div class="spec-item"><span class="spec-label">Ground Clearance</span><span class="spec-value">160 mm</span></div>
+                    <div class="spec-item"><span class="spec-label">Trunk Capacity</span><span class="spec-value">508 Litres</span></div>
+                `,
+                safety: `
+                    <div class="spec-item"><span class="spec-label">ASEAN NCAP</span><span class="spec-value">5 Stars</span></div>
+                    <div class="spec-item"><span class="spec-label">Airbags</span><span class="spec-value">4 Airbags (AV)</span></div>
+                    <div class="spec-item"><span class="spec-label">ABS with EBD</span><span class="spec-value">Standard (X & AV)</span></div>
+                    <div class="spec-item"><span class="spec-label">Vehicle Stability Control</span><span class="spec-value">Available (AV)</span></div>
+                    <div class="spec-item"><span class="spec-label">Hill Start Assist</span><span class="spec-value">Available (AV)</span></div>
+                    <div class="spec-item"><span class="spec-label">ISOFIX</span><span class="spec-value">Standard</span></div>
+                `,
+                comfort: `
+                    <div class="spec-item"><span class="spec-label">Seating Capacity</span><span class="spec-value">5 Seats</span></div>
+                    <div class="spec-item"><span class="spec-label">Air Conditioning</span><span class="spec-value">Manual / Auto Climate (AV)</span></div>
+                    <div class="spec-item"><span class="spec-label">Infotainment</span><span class="spec-value">7" Touchscreen (AV)</span></div>
+                    <div class="spec-item"><span class="spec-label">Audio System</span><span class="spec-value">4/6 Speakers</span></div>
+                    <div class="spec-item"><span class="spec-label">Power Windows</span><span class="spec-value">Front & Rear (X & AV)</span></div>
+                    <div class="spec-item"><span class="spec-label">Power Steering</span><span class="spec-value">Standard</span></div>
+                `
+            };
+
+            document.getElementById('specsContent').innerHTML = 
+                `<div class="specs-grid">${specs[category]}</div>`;
+        }
+
+        // Configuration state
+        let config = {
+            variant: { name: null, price: 0 },
+            color: { name: null, code: null },
+            interior: { name: null, price: 0 },
+            accessories: []
+        };
+
+        let currentStep = 0;
+        const totalSteps = 4;
+        let stepsCompleted = [false, false, false, false];
+
+        // Step management functions
+        function goToStep(stepIndex) {
+            if (stepIndex < currentStep || (stepIndex === currentStep + 1 && stepsCompleted[currentStep])) {
+                currentStep = stepIndex;
+                updateStepDisplay();
+                scrollToStep(stepIndex);
+            }
+        }
+
+        function updateStepDisplay() {
+            document.querySelectorAll('.step-dot').forEach((dot, index) => {
+                dot.classList.remove('active', 'completed');
+                if (index === currentStep) {
+                    dot.classList.add('active');
+                } else if (stepsCompleted[index]) {
+                    dot.classList.add('completed');
+                }
+            });
+
+            document.querySelectorAll('.custom-group').forEach((group, index) => {
+                group.classList.remove('active', 'completed', 'next-preview');
+                
+                if (index === currentStep) {
+                    group.classList.add('active');
+                } else if (stepsCompleted[index]) {
+                    group.classList.add('completed');
+                } else if (index === currentStep + 1 && stepsCompleted[currentStep]) {
+                    group.classList.add('next-preview');
+                }
+            });
+
+            const allCompleted = stepsCompleted.every(completed => completed);
+            const finalButtons = document.getElementById('finalButtons');
+            if (allCompleted) {
+                finalButtons.classList.add('active');
+            } else {
+                finalButtons.classList.remove('active');
+            }
+        }
+
+        function scrollToStep(stepIndex) {
+            const stepElement = document.getElementById(`step-${stepIndex}`);
+            if (stepElement) {
+                stepElement.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+            }
+        }
+
+        function completeStep(stepIndex) {
+            stepsCompleted[stepIndex] = true;
+            
+            if (stepIndex < totalSteps - 1) {
+                setTimeout(() => {
+                    currentStep = stepIndex + 1;
+                    updateStepDisplay();
+                    scrollToStep(stepIndex + 1);
+                }, 500);
+            }
+            
+            updateStepDisplay();
+        }
+
+        // Customization functions
+        function selectVariant(element, variant, price, stepIndex) {
+            element.parentElement.querySelectorAll('.custom-option').forEach(opt => opt.classList.remove('active'));
+            element.classList.add('active');
+            
+            config.variant = { name: variant, price: price };
+            document.getElementById('selectedVariant').textContent = `Bezza ${variant}`;
+            updatePrice();
+            updateCarPreview();
+            
+            completeStep(stepIndex);
+        }
+
+        function selectColor(element, colorName, stepIndex) {
+            document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('active'));
+            element.classList.add('active');
+            
+            config.color = { name: colorName, code: element.dataset.color };
+            document.getElementById('selectedColor').textContent = colorName;
+            updateCarPreview();
+            
+            completeStep(stepIndex);
+        }
+
+        function selectInterior(element, interior, price, stepIndex) {
+            element.parentElement.querySelectorAll('.custom-option').forEach(opt => opt.classList.remove('active'));
+            element.classList.add('active');
+            
+            config.interior = { name: interior, price: price };
+            document.getElementById('selectedInterior').textContent = interior;
+            updatePrice();
+            
+            completeStep(stepIndex);
+        }
+
+        function toggleAccessory(element, accessory, price, stepIndex) {
+            element.classList.toggle('active');
+            
+            const existingIndex = config.accessories.findIndex(acc => acc.name === accessory);
+            if (existingIndex > -1) {
+                config.accessories.splice(existingIndex, 1);
+            } else {
+                config.accessories.push({ name: accessory, price: price });
+            }
+            
+            updateAccessoriesDisplay();
+            updatePrice();
+        }
+
+        function completeAccessoriesStep() {
+            completeStep(3);
+        }
+
+        function updateAccessoriesDisplay() {
+            const accessoriesText = config.accessories.length > 0 
+                ? config.accessories.map(acc => acc.name).join(', ')
+                : 'None';
+            document.getElementById('selectedAccessories').textContent = accessoriesText;
+        }
+
+        function updatePrice() {
+            const basePrice = config.variant.price;
+            const interiorPrice = config.interior.price;
+            const accessoriesPrice = config.accessories.reduce((sum, acc) => sum + acc.price, 0);
+            const totalPrice = basePrice + interiorPrice + accessoriesPrice;
+            
+            document.getElementById('totalPrice').textContent = totalPrice > 0 ? `RM ${totalPrice.toLocaleString()}` : 'RM 0';
+        }
+
+        function updateCarPreview() {
+            const preview = document.getElementById('carPreview');
+            const colorMap = {
+                'red': 'linear-gradient(45deg, #ff3b30, #ff6b6b)',
+                'blue': 'linear-gradient(45deg, #007aff, #5856d6)',
+                'silver': 'linear-gradient(45deg, #c0c0c0, #e0e0e0)',
+                'black': 'linear-gradient(45deg, #000000, #2a2a2a)',
+                'white': 'linear-gradient(45deg, #ffffff, #f0f0f0)',
+                'purple': 'linear-gradient(45deg, #af52de, #bf5af2)'
+            };
+            
+            if (config.color.code) {
+                preview.style.background = colorMap[config.color.code];
+            }
+            
+            preview.innerHTML = `
+                <div style="text-align: center; color: rgba(255,255,255,0.8);">
+                    <div style="font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem;">
+                        ${config.variant.name ? `BEZZA ${config.variant.name}` : 'SELECT VARIANT'}
+                    </div>
+                    <div style="font-size: 1rem; opacity: 0.8;">
+                        ${config.color.name || 'Choose Color'}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Action functions
+        function requestQuote() {
+            const summary = `
+Configuration Summary:
+- Variant: Bezza ${config.variant.name}
+- Color: ${config.color.name}
+- Interior: ${config.interior.name}
+- Accessories: ${config.accessories.map(acc => acc.name).join(', ') || 'None'}
+- Total Price: ${document.getElementById('totalPrice').textContent}
+
+Your quote request has been submitted! A MeisterCo representative will contact you within 24 hours.
+            `.trim();
+            
+            alert(summary);
+        }
+
+        function bookTestDrive() {
+    // This is for the "CONFIGURE YOURS" button - uses current configuration
+    const selectedVariant = config.variant.name ? `BEZZA ${config.variant.name}` : 'BEZZA';
+    const selectedColor = config.color.name || '';
+    const totalPrice = document.getElementById('totalPrice').textContent || '';
+    
+    // Create URL with parameters
+    const params = new URLSearchParams({
+        model: 'bezza',
+        variant: selectedVariant,
+        color: selectedColor,
+        price: totalPrice,
+        source: 'bezza-configure'
+    });
+    
+    // Redirect to booking page
+    window.location.href = `book.html?${params.toString()}`;
+}
+
+function bookDefaultTestDrive() {
+    // This is for the final CTA "BOOK TEST DRIVE" button - always uses default BEZZA, ignoring current configuration
+    const params = new URLSearchParams({
+        model: 'bezza',
+        variant: '',  // Don't pass variant to keep the default dropdown text
+        color: '',
+        price: '',
+        source: 'bezza-default-cta'
+    });
+    
+    // Redirect to booking page
+    window.location.href = `book.html?${params.toString()}`;
+}
+
+function downloadBrochure() {
+    alert('Download Brochure\n\nPreparing your personalized Bezza brochure...\n\nThe PDF will be ready for download shortly.');
+}
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCarPreview();
+            updateAccessoriesDisplay();
+            updateStepDisplay();
+            
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero');
+                if (hero) {
+                    hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+                }
+            });
+
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        
+        function bookTestDrive() {
+            // Get current configuration for context
+            const selectedVariant = config.variant.name ? `BEZZA ${config.variant.name}` : 'BEZZA';
+            const selectedColor = config.color.name || '';
+            const totalPrice = document.getElementById('totalPrice').textContent || '';
+            
+            // Create URL with parameters
+            const params = new URLSearchParams({
+                model: 'bezza',
+                variant: selectedVariant,
+                color: selectedColor,
+                price: totalPrice,
+                source: 'bezza-page'
+            });
+            
+            // Redirect to booking page
+            window.location.href = `book.html?${params.toString()}`;
+        }
+
+        // Add this JavaScript to the existing script section in alza.html
+
+// Mobile Menu Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    let mobileMenuOpen = false;
+
+    // Toggle mobile menu
+    function toggleMobileMenu() {
+        mobileMenuOpen = !mobileMenuOpen;
+        
+        if (mobileMenuOpen) {
+            mobileMenuToggle.classList.add('active');
+            mobileMenuToggle.setAttribute('aria-expanded', 'true');
+            mobileNav.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        } else {
+            mobileMenuToggle.classList.remove('active');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    // Close mobile menu
+    function closeMobileMenu() {
+        if (mobileMenuOpen) {
+            mobileMenuOpen = false;
+            mobileMenuToggle.classList.remove('active');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    // Event listeners
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+    }
+
+    // Close menu when clicking nav links
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            closeMobileMenu();
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (mobileMenuOpen && !mobileMenuToggle.contains(e.target) && !mobileNav.contains(e.target)) {
+            closeMobileMenu();
+        }
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenuOpen) {
+            closeMobileMenu();
+        }
+    });
+
+    // Close menu on window resize to desktop
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 1024 && mobileMenuOpen) {
+            closeMobileMenu();
+        }
+    });
+
+    // Active section highlighting
+    function updateActiveNav() {
+        const sections = document.querySelectorAll('section[id]');
+        const scrollPos = window.pageYOffset + 100;
+        
+        sections.forEach(section => {
+            const top = section.offsetTop;
+            const height = section.offsetHeight;
+            const id = section.getAttribute('id');
+            
+            if (scrollPos >= top && scrollPos < top + height) {
+                // Update desktop nav
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                // Update mobile nav
+                document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+
+    // Update active nav on scroll
+    window.addEventListener('scroll', updateActiveNav);
+});
+    </script>
+</body>
+</html>
